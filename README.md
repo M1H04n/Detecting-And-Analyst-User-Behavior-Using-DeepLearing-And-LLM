@@ -29,7 +29,7 @@ A Security Operations Center (SOC) chatbot for analyzing User and Entity Behavio
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/m1h04n/soc-chatbot.git
+   git clone https://github.com/M1H04n/Detecting-And-Analyst-User-Behavior.git
    cd soc-chatbot
    ```
 
