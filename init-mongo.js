@@ -25,13 +25,16 @@ db.raw_alerts.createIndex({ "event_id": 1 });
 
 db.fp_patterns.createIndex({ "pattern_hash": 1 }, { unique: true });
 
-// Create default admin user (password: admin123 - CHANGE THIS!)
+// Create default admin user (password: admin123)
+// Hash generated with: python -c "import bcrypt; print(bcrypt.hashpw(b'admin123', bcrypt.gensalt(12)).decode())"
 db.users.insertOne({
     username: "admin",
-    password_hash: "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/X4.VTtYHKLQJiQzGe",
+    password_hash: "$2b$12$LQv3c1yqBWVHxkd0LHAkCOmZ3J9EQlVgWxKhmQJFT0OBJ.NfxCqNu",
     role: "admin",
     created_at: new Date(),
-    last_login: null
+    last_login: null,
+    totp_enabled: false,
+    totp_secret: null
 });
 
 print("✓ MongoDB initialized successfully!");
