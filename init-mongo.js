@@ -25,21 +25,12 @@ db.raw_alerts.createIndex({ "event_id": 1 });
 
 db.fp_patterns.createIndex({ "pattern_hash": 1 }, { unique: true });
 
-// Create default admin user (password: admin123)
-// Hash generated with: python -c "import bcrypt; print(bcrypt.hashpw(b'admin123', bcrypt.gensalt(12)).decode())"
-db.users.insertOne({
-    username: "admin",
-    password_hash: "$2b$12$LQv3c1yqBWVHxkd0LHAkCOmZ3J9EQlVgWxKhmQJFT0OBJ.NfxCqNu",
-    role: "admin",
-    created_at: new Date(),
-    last_login: null,
-    totp_enabled: false,
-    totp_secret: null
-});
+// NOTE: Admin user will be created automatically by the Flask app on first startup
+// Default credentials: admin / admin123
 
 print("✓ MongoDB initialized successfully!");
 print("  - Collections created: users, ueba_results, raw_alerts, fp_patterns, config");
 print("  - Indexes created for performance");
-print("  - Default admin user created (username: admin, password: admin123)");
+print("  - Admin user will be created on first Flask app startup");
 print("");
-print("⚠️  IMPORTANT: Change the default admin password after first login!");
+print("⚠️  Default login: admin / admin123 - Change after first login!");
