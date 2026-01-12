@@ -1,0 +1,18 @@
+# Environment file - DO NOT COMMIT
+.env
+
+# Logs and data
+logs/
+data/
+backup/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

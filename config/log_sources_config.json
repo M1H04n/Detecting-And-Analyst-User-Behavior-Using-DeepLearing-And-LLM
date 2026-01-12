@@ -1,0 +1,29 @@
+{
+    "sources": {},
+    "default_source": null,
+    "field_mappings": {
+        "graylog": {
+            "timestamp": "timestamp",
+            "user": "fields.user_id",
+            "host": "fields.src_endpoint_ip",
+            "command_line": "fields.command_line",
+            "parent_command_line": "fields.parent_command_line",
+            "image_path": "fields.target_file_path",
+            "src_ip": "fields.src_endpoint_ip"
+        },
+        "wazuh": {
+            "timestamp": "timestamp",
+            "user": "agent.name",
+            "host": "agent.ip",
+            "command_line": "data.command",
+            "src_ip": "agent.ip"
+        },
+        "qradar": {
+            "timestamp": "startTime",
+            "user": "username",
+            "host": "sourceIP",
+            "command_line": "payload",
+            "src_ip": "sourceIP"
+        }
+    }
+}

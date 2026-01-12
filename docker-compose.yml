@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # =============================================================================
+  # SOC Chatbot - Main Application
+  # =============================================================================
+  soc-chatbot:
+    image: m1h04n/soc-chatbot:latest # Replace with your Docker Hub username
+    container_name: soc-chatbot
+    restart: unless-stopped
+    ports:
+      - "${PORT:-5000}:5000"
+    environment:
+      - FLASK_ENV=production
+      - HOST=0.0.0.0
+      - PORT=5000
+      - MONGO_URI=mongodb://soc_admin:${MONGO_PASSWORD}@mongodb:27017/soc_chatbot?authSource=admin
+      - REDIS_URL=redis://redis:6379/0
+      - SESSION_SECRET=${SESSION_SECRET:-your-secret-key-change-me}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    volumes:
+      - ./config:/app/config:ro # Custom configurations
+      - ./logs:/app/logs # Application logs
+      - ./backup:/app/backup # Data backups
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - soc-network
+
+  # =============================================================================
+  # SOC Pipeline - Data Processing (Optional)
+  # =============================================================================
+  soc-pipeline:
+    image: m1h04n/soc-pipeline:latest # Replace with your Docker Hub username
+    container_name: soc-pipeline
+    restart: unless-stopped
+    environment:
+      - MONGO_URI=mongodb://soc_admin:${MONGO_PASSWORD}@mongodb:27017/soc_chatbot?authSource=admin
+      - PIPELINE_INTERVAL=${PIPELINE_INTERVAL:-300}
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+    depends_on:
+      - mongodb
+    networks:
+      - soc-network
+
+  # =============================================================================
+  # MongoDB - Database
+  # =============================================================================
+  mongodb:
+    image: mongo:7
+    container_name: soc-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: soc_admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: soc_chatbot
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - "27017:27017"
+    networks:
+      - soc-network
+
+  # =============================================================================
+  # Redis - Session & Cache
+  # =============================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: soc-redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - soc-network
+
+# =============================================================================
+# Networks & Volumes
+# =============================================================================
+networks:
+  soc-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
