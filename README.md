@@ -21,13 +21,6 @@ All features are still in development. If you run into any bugs, please bear wit
 - **Risk Scoring** - Automatic severity classification
 
 ## Quick Start
-
-### Prerequisites
-
-- Docker & Docker Compose installed
-- At least 4GB RAM available
-- Port 5000 available
-
 ### Installation
 
 1. **Clone this repository:**
