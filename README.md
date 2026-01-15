@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License MIT">
 </p>
 
-A Security Operations Center (SOC) chatbot for analyzing User and Entity Behavior Analytics (UEBA) alerts with AI-powered insights. For now only support VietNamese.
+A Security Operations Center (SOC) chatbot for analyzing User and Entity Behavior Analytics (UEBA) alerts with AI-powered insights. For now only support Vietnamese.
 
 ## Note
 All features are still in development. If you run into any bugs, please bear with me!
@@ -146,6 +146,9 @@ For issues and feature requests, please open an issue on GitHub.
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
+
+## Login
+<img width="825" height="806" alt="image" src="https://github.com/user-attachments/assets/201bfa94-fbec-417e-aeed-9d235c1a43c6" />
 
 ## Dashboard
 <img width="1906" height="942" alt="Dashboard" src="https://github.com/user-attachments/assets/b8910b77-00eb-46ad-a961-27b3f8e2f454" />
