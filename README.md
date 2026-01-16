@@ -16,7 +16,7 @@ All features are still in development. If you run into any bugs, please bear wit
 - **UEBA Alert Analysis** - Analyze security alerts with Deep Learning
 - **AI Chatbot** - Natural language interaction for alert investigation
 - **Interactive Dashboard** - Visualize alerts, trends, and user behaviors
-- **Multi-SIEM Support** - Connect to Graylog, Wazuh, QRadar
+- **Multi-SIEM Support** - Connect to Graylog, Wazuh(Testing), QRadar(Testing)
 - **False Positive Management** - Mark and track false positives
 - **Risk Scoring** - Automatic severity classification
 
